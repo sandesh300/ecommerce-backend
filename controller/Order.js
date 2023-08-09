@@ -1,9 +1,9 @@
 const { Order } = require("../model/Order");
 
 exports.fetchOrdersByUser = async (req, res) => {
-    const { userId } = req.params;
+    const { id } = req.user;
     try {
-      const orders = await Order.find({ user: userId });
+      const orders = await Order.find({ user: id });
   
       res.status(200).json(orders);
     } catch (err) {
@@ -49,6 +49,7 @@ exports.fetchOrdersByUser = async (req, res) => {
     let query = Order.find({deleted:{$ne:true}});
     let totalOrdersQuery = Order.find({deleted:{$ne:true}});
   
+    
     if (req.query._sort && req.query._order) {
       query = query.sort({ [req.query._sort]: req.query._order });
     }
@@ -70,5 +71,4 @@ exports.fetchOrdersByUser = async (req, res) => {
       res.status(400).json(err);
     }
   };
-  
   
