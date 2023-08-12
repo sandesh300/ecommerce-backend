@@ -60,6 +60,9 @@ server.post('/webhook', express.raw({type: 'application/json'}), (request, respo
 });
 
 
+
+
+
 // JWT options
 
 const opts = {};
@@ -185,6 +188,9 @@ server.post("/create-payment-intent", async (req, res) => {
     clientSecret: paymentIntent.client_secret,
   });
 });
+
+
+
 
 
 
